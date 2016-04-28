@@ -1,0 +1,45 @@
+<ion-view title="Login">
+  <ion-content>
+    <div class="row">
+      <h4 class="col text-center">Welcome to Secure Chat Application!</h4>
+    </div>
+    <div class="row">
+      <p class="col text-center">Here, you can chat with other users with end-to-end encryption.</p>
+    </div>
+
+    <form ng-submit="signin(user1)">
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="text" placeholder="username" ng-model="user1.email">
+        </label>
+        <label class="item item-input">
+          <input type="password" placeholder="password" ng-model="user1.password">
+        </label>
+      </div>
+      <div class="row">
+        <button type="submit" class="col button button-small button-assertive"> Login</button>
+      </div>
+    </form>
+
+    <br>
+    <hr>
+
+    <form ng-submit="signup(user2)">
+      <div class="list list-inset">
+        <label class="item item-input">
+          <input type="text" placeholder="Full name" ng-model="user2.name">
+        </label>
+        <label class="item item-input">
+          <input type="text" placeholder="username" ng-model="user2.email">
+        </label>
+        <label class="item item-input">
+          <input type="password" placeholder="password" ng-model="user2.password">
+        </label>
+      </div>
+      <div class="row">
+        <button type="submit" class="col button button-small button-assertive">Create Account</button>
+      </div>
+    </form>
+
+  </ion-content>
+</ion-view>

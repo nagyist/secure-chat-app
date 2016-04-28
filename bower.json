@@ -1,0 +1,19 @@
+{
+  "name": "SecureChatApp",
+  "author": "Pranav <a@a.com>",
+  "private": "true",
+  "devDependencies": {},
+  "dependencies": {
+    "angular": "~1.4.8",
+    "ngCordova": "~0.1.23-alpha",
+    "angular-resource": "~1.4.8",
+    "ionic": "~1.2.1",
+    "angularfire": "^1.2.0",
+    "ngstorage": "^0.3.10",
+    "sjcl": "^1.0.3",
+    "cryptico": "*"
+  },
+  "resolutions": {
+    "angular": "1.4.8"
+  }
+}

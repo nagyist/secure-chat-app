@@ -1,0 +1,30 @@
+<ion-view title="Start a new chat">
+
+    <!--<ion-header-bar align-title="center" class="bar-positive">-->
+      <!--<button class="button button-icon icon ion-navicon" menu-toggle="left"></button>-->
+      <!--<h1 class="title">Start a new chat</h1>-->
+    <!--</ion-header-bar>-->
+
+    <ion-content>
+
+      <div class="list">
+
+        <div class="item item-input-inset">
+          <label class="item-input-wrapper">
+            <input type="text" placeholder="Type username to start a new chat" ng-model="email">
+          </label>
+          <button class="button button-small" ng-click="submit(email)">
+            Submit
+          </button>
+        </div>
+        <a class="item item-avatar" ng-if="user.active" ng-click="startChat(user)">
+          <img src="{{user.img}}">
+          <h2>{{user.name}}</h2>
+        </a>
+
+      </div>
+
+    </ion-content>
+
+
+</ion-view>

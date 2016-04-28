@@ -1,0 +1,43 @@
+<ion-view title="Start a new group chat">
+
+    <!--<ion-header-bar align-title="center" class="bar-positive">-->
+      <!--<button class="button button-icon icon ion-navicon" menu-toggle="left"></button>-->
+      <!--<h1 class="title">Start a new chat</h1>-->
+    <!--</ion-header-bar>-->
+
+    <ion-content>
+
+      <div class="list">
+
+        <div class="item item-divider item">
+          Enter Group Name
+        </div>
+        <label class="item item-input item-stacked-label">
+          <!--<span class="input-label">Enter group name</span>-->
+          <input type="text" placeholder="Type here.." ng-model="group.name">
+        </label>
+
+        <div class="item item-divider item">
+          Select users
+        </div>
+
+        <li class="item item-checkbox" ng-repeat="user in users">
+          <label class="checkbox checkbox-platform">
+            <input type="checkbox" ng-model="checked[$index]" ng-change="stateChanged(checked[$index], user.recipientUsername)">
+          </label>
+          <p ng-bind-html="user.recipientName"></p>
+        </li>
+        <div class="row">
+          <div class="col text-center">
+            <button class="button button-assertive" ng-click="createGroup(group.name)">
+              Create group
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </ion-content>
+
+
+</ion-view>

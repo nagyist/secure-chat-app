@@ -1,0 +1,37 @@
+
+<ion-view view-title="{{title}}">
+
+  <!--<ion-header-bar align-title="center" class="bar-positive">-->
+    <!--<h1 class="title">{{user.name}}</h1>-->
+  <!--</ion-header-bar>-->
+
+  <ion-content delegate-handle="chatListView" has-bouncing="true">
+    <div class="list">
+      <div class="item item-borderless chat" ng-class="avatarSide(chat.sender)" ng-repeat="chat in chatList" ng-if="!isGroup">
+        <img ng-src="{{imageUrl(chat.sender)}}">
+        <h2 class="right">{{decrypt(chat.message)}}</h2>
+        <p class="royal">{{chat.timestamp | date:'hh:mm'}}</p>
+      </div>
+
+      <div class="item item-borderless chat" ng-class="groupSide(chat.sender)" ng-repeat="chat in chatList" ng-if="isGroup">
+        <h2 class="right">{{decrypt(chat.message)}}</h2>
+        <p class="royal">{{chat.timestamp | date:'hh:mm'}}</p>
+        <p class="sender-name">{{chat.sender}}</p>
+      </div>
+
+    </div>
+    <div class="row center-spinner" ng-if="!chatList">
+      <ion-spinner class="spinner-energized col text-center" icon="lines"></ion-spinner>
+    </div>
+  </ion-content>
+  <form ng-submit="sendChat(message)">
+    <ion-footer-bar class="item-input-inset" keyboard-attach>
+      <label class="item-input-wrapper">
+        <input type="text" placeholder="Send a message.." ng-model="message">
+      </label>
+      <button class="button button-small button-clear" type="submit">
+        Send
+      </button>
+    </ion-footer-bar>
+  </form>
+</ion-view>
