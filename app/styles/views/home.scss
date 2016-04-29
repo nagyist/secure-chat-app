@@ -10,3 +10,47 @@
 .sender-name {
   color: #FF5722 !important;
 }
+
+.image-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #333;
+  height: 100%;
+
+  img {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+  }
+
+}
+
+.popup-container .popup{
+
+  max-height: 100% !important;
+  background-color: rgba(0, 0, 0, 0.5);
+
+}
+.popup {
+  width: 100% !important;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .popup-head {
+    border: none;
+  }
+  .popup-body{
+    img{
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .popup-buttons {
+    padding-top: 100px;
+  }
+}

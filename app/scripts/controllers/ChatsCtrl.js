@@ -24,6 +24,13 @@ angular.module('SecureChatApp')
       console.log('groups loaded');
     });
 
+//    $scope.grpLastMsg = function (key) {
+//      FirebaseRef.child('groupChats/'+key+'/lastmsg').once('value', function (snap) {
+//        console.log(snap.val());
+//        return snap.val();
+//      })
+//    };
+
     $scope.decrypt = function (key, msg) {
       return sjcl.decrypt(key, msg);
     };

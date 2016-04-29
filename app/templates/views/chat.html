@@ -4,17 +4,26 @@
   <!--<ion-header-bar align-title="center" class="bar-positive">-->
     <!--<h1 class="title">{{user.name}}</h1>-->
   <!--</ion-header-bar>-->
+  <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear icon ion-android-image" ng-click="sendPicture()">
+    </button>
+  </ion-nav-buttons>
+
+
 
   <ion-content delegate-handle="chatListView" has-bouncing="true">
     <div class="list">
       <div class="item item-borderless chat" ng-class="avatarSide(chat.sender)" ng-repeat="chat in chatList" ng-if="!isGroup">
         <img ng-src="{{imageUrl(chat.sender)}}">
-        <h2 class="right">{{decrypt(chat.message)}}</h2>
+        <h2 class="right" ng-if="chat.message">{{decrypt(chat.message)}}</h2>
+        <img ng-if="chat.img" src="{{decrypt(chat.img)}}" alt="" ng-click="showImage(decrypt(chat.img))">
         <p class="royal">{{chat.timestamp | date:'hh:mm'}}</p>
       </div>
 
+
       <div class="item item-borderless chat" ng-class="groupSide(chat.sender)" ng-repeat="chat in chatList" ng-if="isGroup">
-        <h2 class="right">{{decrypt(chat.message)}}</h2>
+        <h2 class="right" ng-if="chat.message">{{decrypt(chat.message)}}</h2>
+        <img ng-if="chat.img" src="{{decrypt(chat.img)}}" alt="" ng-click="showImage(decrypt(chat.img))">
         <p class="royal">{{chat.timestamp | date:'hh:mm'}}</p>
         <p class="sender-name">{{chat.sender}}</p>
       </div>
@@ -29,9 +38,11 @@
       <label class="item-input-wrapper">
         <input type="text" placeholder="Send a message.." ng-model="message">
       </label>
+
       <button class="button button-small button-clear" type="submit">
         Send
       </button>
+
     </ion-footer-bar>
   </form>
 </ion-view>

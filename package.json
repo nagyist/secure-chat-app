@@ -50,7 +50,8 @@
     "gulp": "./node_modules/.bin/gulp"
   },
   "cordovaPlugins": [
-    "cordova-plugin-whitelist"
+    "cordova-plugin-whitelist",
+    "cordova-plugin-image-picker"
   ],
   "cordovaPlatforms": [
     "android"

@@ -7,7 +7,7 @@
  * # UserChatCtrl
  */
 angular.module('SecureChatApp')
-  .controller('UserChatCtrl', function($scope, $stateParams, $firebaseArray, $firebaseObject, Hash, FirebaseRef, $localStorage, chatInfo, $ionicScrollDelegate, $q) {
+  .controller('UserChatCtrl', function($scope, $stateParams, $firebaseArray, $firebaseObject, Hash, FirebaseRef, $localStorage, chatInfo, $ionicScrollDelegate, $q, $ionicPlatform, $cordovaCamera, $ionicPopup) {
 
 //    console.log($stateParams);
     $scope.isGroup = false;
@@ -109,8 +109,78 @@ angular.module('SecureChatApp')
         return 'item-stable text-rtl';
       }
       return '';
+    };
+
+    //Image Picker
+
+    $scope.sendPicture = function () {
+
+      $ionicPlatform.ready(function() {
+        var options = {
+          quality: 50,
+          destinationType: Camera.DestinationType.DATA_URL,
+          sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+          targetWidth: 200,
+          targetHeight: 200
+        };
+
+        $cordovaCamera.getPicture(options).then(function(imageData) {
+          console.log('img', imageData);
+//          $scope.imageData = "data:image/jpeg;base64,"+imageUri;
+
+
+          var encryptedImg = sjcl.encrypt(chatInfo.symmetricKey, "data:image/jpeg;base64,"+imageData);
+
+          var lastmsg = sjcl.encrypt(chatInfo.symmetricKey, 'Image');
+          chatList.$add({
+            sender: $localStorage.userData.username,
+            img: encryptedImg,
+            timestamp: Firebase.ServerValue.TIMESTAMP
+          }).then(function (id) {
+            console.log(id);
+
+            if(chatInfo.key){
+              $q.all([
+                FirebaseRef.child('users/'+Hash($localStorage.userData.username)+'/chats/'+chatInfo.key).update({
+                  lastmsg: lastmsg
+                }),
+                FirebaseRef.child('users/'+Hash($stateParams.user.username)+'/chats/'+chatInfo.key).update({
+                  lastmsg: lastmsg
+                })
+              ]).then(function (resp) {
+                console.log(resp);
+              });
+            }
+            else{
+              FirebaseRef.child('groupChats/'+chatInfo.groupKey+'/lastmsg').set(lastmsg);
+            }
+
+            $ionicScrollDelegate.scrollBottom(true);
+
+          });
+
+        }, function(err) {
+          console.log(err);
+        });
+
+      });
+
+    };
+
+    $scope.toggleImage = function (chat) {
+      console.log(chat);
+      chat.isImageClicked = !chat.isImageClicked;
     }
 
+    $scope.showImage = function(base64) {
+      var alertPopup = $ionicPopup.alert({
+        title: '',
+        template: '<img src="'+base64+'"/>'
+      });
+      alertPopup.then(function(res) {
+        console.log('Thank you for not eating my delicious ice cream cone');
+      });
+    };
 
 
   });

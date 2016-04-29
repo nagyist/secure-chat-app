@@ -30,7 +30,8 @@ angular.module('SecureChatApp', ['ionic', 'ngCordova', 'ngResource', 'firebase',
     // register $http interceptors, if any. e.g.
     // $httpProvider.interceptors.push('interceptor-name');
 
-    $firebaseRefProvider.registerUrl('https://secure-chat-app.firebaseio.com/');
+//    $firebaseRefProvider.registerUrl('https://secure-chat-app.firebaseio.com/');
+    $firebaseRefProvider.registerUrl('https://fiery-torch-1371.firebaseio.com/');
 
     // Application routing
     $stateProvider
