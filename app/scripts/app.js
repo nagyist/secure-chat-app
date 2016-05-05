@@ -52,6 +52,15 @@ angular.module('SecureChatApp', ['ionic', 'ngCordova', 'ngResource', 'firebase',
         templateUrl: 'templates/login.html',
         controller: 'LoginCtrl'
       })
+      .state('activateAccount', {
+        url: '/activateAccount',
+        cache: false,
+        templateUrl: 'templates/activateAccount.html',
+        controller: 'ActivateAccountCtrl',
+        params: {
+          email: null
+        }
+      })
       .state('app.home', {
         url: '/home',
         cache: false,

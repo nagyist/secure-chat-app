@@ -32,14 +32,20 @@
           <input type="text" placeholder="Full name" ng-model="user2.name">
         </label>
         <label class="item item-input">
-          <input type="text" placeholder="username" ng-model="user2.email">
+          <input type="text" placeholder="username" ng-model="user2.username">
         </label>
+        <!--<label class="item item-input">-->
+          <!--<input type="password" placeholder="password" ng-model="user2.password">-->
+        <!--</label>-->
         <label class="item item-input">
-          <input type="password" placeholder="password" ng-model="user2.password">
+          <input type="email" placeholder="email" ng-model="user2.email">
         </label>
         <div class="row">
           <div class="col text-center">
             <button type="submit" class="button button-outline button-assertive">Create Account</button>
+          </div>
+          <div class="col text-center">
+            <button class="button button-outline button-positive" ui-sref="activateAccount">Activate Account </button>
           </div>
         </div>
       </div>
